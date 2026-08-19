@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SINANO 修理・不具合案内 プロトタイプ</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN",
+                 "Yu Gothic", Meiryo, sans-serif;
+    background: #f6f7f8;
+    color: #222;
+    line-height: 1.7;
+  }
+  header {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 16px 20px;
+  }
+  .brand {
+    font-weight: 700;
+    letter-spacing: .08em;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 28px 16px 60px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.03);
+  }
+  h1 {
+    font-size: 28px;
+    line-height: 1.35;
+    margin: 0 0 12px;
+  }
+  h2 {
+    font-size: 22px;
+    margin: 0 0 16px;
+  }
+  p { margin: 0 0 16px; }
+  .lead {
+    font-size: 18px;
+  }
+  .note {
+    font-size: 14px;
+    color: #666;
+  }
+  .actions {
+    display: grid;
+    gap: 12px;
+    margin-top: 22px;
+  }
+  button, .button {
+    width: 100%;
+    appearance: none;
+    border: 1px solid #bbb;
+    background: #fff;
+    color: #222;
+    border-radius: 9px;
+    padding: 16px 18px;
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: .15s ease;
+  }
+  button:hover, .button:hover {
+    border-color: #666;
+    background: #fafafa;
+  }
+  .primary {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+    text-align: center;
+  }
+  .primary:hover {
+    background: #000;
+  }
+  .secondary {
+    text-align: center;
+  }
+  .line-button {
+    text-align: center;
+    border-style: dashed;
+  }
+  .helper-text {
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+  }
+  .muted {
+    background: #f7f7f7;
+  }
+  .back {
+    margin-top: 18px;
+    border: 0;
+    padding: 10px 0;
+    color: #555;
+    background: transparent;
+    font-weight: 500;
+    text-align: left;
+  }
+  .step {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 10px;
+  }
+  .checklist {
+    padding: 0;
+    margin: 18px 0;
+    list-style: none;
+  }
+  .checklist li {
+    padding: 8px 0 8px 26px;
+    position: relative;
+    border-bottom: 1px solid #eee;
+  }
+  .checklist li:before {
+    content: "✓";
+    position: absolute;
+    left: 4px;
+    font-weight: 700;
+  }
+  .info-box {
+    background: #f6f7f8;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 18px 0;
+  }
+  .faq {
+    margin-top: 28px;
+  }
+  details {
+    border-top: 1px solid #ddd;
+    padding: 12px 0;
+  }
+  details:last-child {
+    border-bottom: 1px solid #ddd;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .screen { display: none; }
+  .screen.active { display: block; }
+  @media (max-width: 600px) {
+    .card { padding: 22px 18px; }
+    h1 { font-size: 24px; }
+    h2 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">SINANO</div>
+</header>
+
+<main class="wrap">
+
+  <!-- HOME -->
+  <section id="home" class="screen active">
+    <div class="card">
+      <div class="step">修理・不具合案内</div>
+      <h1>修理・不具合でお困りの方</h1>
+      <p class="lead">SINANO製品の修理をご希望の場合、事前にお電話いただく必要はありません。</p>
+      <p>製品名や種類が分からなくても大丈夫です。まずは、現在の状態に近いものを選んでください。</p>
+
+      <div class="actions">
+        <button class="primary" onclick="show('problem')">修理・不具合の案内を始める</button>
+      </div>
+
+      <p class="note" style="margin-top:16px;">※ SINANO製品のみ修理を承ります。他社製品は受付できません。</p>
+
+      <div class="faq">
+        <h2>よくあるご質問</h2>
+        <details>
+          <summary>修理はいくらかかりますか？</summary>
+          <p>修理品を確認後、お見積りをご案内します。修理料金の目安は別ページでご確認いただける想定です。</p>
+        </details>
+        <details>
+          <summary>修理にはどのくらいかかりますか？</summary>
+          <p>通常はお預かり後、返送まで約10日程度を目安とします。内容によって前後する場合があります。</p>
+        </details>
+        <details>
+          <summary>大会や旅行など使用予定日があります</summary>
+          <p>修理受付時に使用予定日をご入力いただけるようにする想定です。日程を保証するものではありません。</p>
+        </details>
+        <details>
+          <summary>修理中の代替品を借りられますか？</summary>
+          <p>代替品・レンタルのご用意はありません。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM SELECT -->
+  <section id="problem" class="screen">
+    <div class="card">
+      <div class="step">1 / 2</div>
+      <h2>どのようなことでお困りですか？</h2>
+      <p>当てはまるものを選んでください。</p>
+
+      <div class="actions">
+        <button onclick="show('repair')">折れた・曲がった・壊れた</button>
+        <button onclick="show('noise')">異音がする・調子が悪い</button>
+        <button onclick="show('fixing')">長さが固定できない・固定方法が分からない</button>
+        <button onclick="show('parts')">先ゴムなどの部品を交換したい</button>
+        <button onclick="show('unknown')">よく分からない</button>
+      </div>
+
+      <button class="back" onclick="show('home')">← 戻る</button>
+    </div>
+  </section>
+
+  <!-- REPAIR -->
+  <section id="repair" class="screen">
+    <div class="card">
+      <div class="step">修理が必要な可能性が高い症状</div>
+      <h2>修理受付へお進みください</h2>
+      <p>SINANO製品であれば、製品名・型番が分からなくてもお申し込みいただけます。</p>
+
+      <div class="info-box">
+        折れ、曲がり、破損などは、現物確認後に修理可否と修理内容をご案内します。
+      </div>
+
+      <div class="actions">
+        <button class="primary" onclick="show('beforeRepair')">修理受付へ進む</button>
+      </div>
+
+      <button class="back" onclick="show('problem')">← 症状選択へ戻る</button>
+    </div>
+  </section>
+
+  <!-- NOISE -->
+  <section id="noise" class="screen">
+    <div class="card">
+      <div class="step">異音・動作不良</div>
+      <h2>状態をSINANOで確認します</h2>
+      <p>修理が必要か分からない場合でも、そのまま修理受付をしていただけます。</p>
+
+      <div class="actions">
+        <button class="primary" onclick="show('beforeRepair')">修理受付へ進む</button>
+      </div>
+
+      <button class="back" onclick="show('problem')">← 症状選択へ戻る</button>
+    </div>
+  </section>
+
+  <!-- FIXING -->
+  <section id="fixing" class="screen">
+    <div class="card">
+      <div class="step">操作・固定方法</div>
+      <h2>修理に出す前に確認できることがあります</h2>
+      <p>製品によって固定方法が異なります。操作や調整で改善する場合があります。</p>
+
+      <div class="actions">
+        <button onclick="show('fixingType')">固定・長さ調整の方法を確認する</button>
+        <button class="primary" onclick="show('beforeRepair')">分からない・直らないので修理受付へ</button>
+        <button class="line-button" onclick="show('lineHelp')">このまま送ってよいかLINEで質問する</button>
+      </div>
+      <p class="helper-text">「修理が必要か分からない」「どの固定方法か分からない」という場合にご利用ください。</p>
+
+      <button class="back" onclick="show('problem')">← 症状選択へ戻る</button>
+    </div>
+  </section>
+
+  <!-- FIXING TYPE -->
+  <section id="fixingType" class="screen">
+    <div class="card">
+      <div class="step">固定方法の確認</div>
+      <h2>固定方法に近いものを選んでください</h2>
+      <p class="note">※ ここは今後、実際の製品仕様に合わせて分岐・説明を追加する想定です。</p>
+
+      <div class="actions">
+        <button onclick="show('twist')">回して固定するタイプ</button>
+        <button onclick="show('lever')">レバーで固定するタイプ</button>
+        <button onclick="show('fixingUnknown')">どれか分からない</button>
+      </div>
+
+      <button class="back" onclick="show('fixing')">← 戻る</button>
+    </div>
+  </section>
+
+  <section id="twist" class="screen">
+    <div class="card">
+      <div class="step">回して固定するタイプ</div>
+      <h2>操作方法の案内ページ</h2>
+      <p>ここに「ひねるタイプ」の確認手順を入れる想定です。</p>
+      <p class="note">このプロトタイプでは詳細説明は未作成です。</p>
+
+      <div class="actions">
+        <button class="primary" onclick="show('beforeRepair')">直らないので修理受付へ</button>
+        <button onclick="show('solved')">直った</button>
+      </div>
+
+      <button class="back" onclick="show('fixingType')">← 固定方法へ戻る</button>
+    </div>
+  </section>
+
+  <section id="lever" class="screen">
+    <div class="card">
+      <div class="step">レバーで固定するタイプ</div>
+      <h2>どの状態に近いですか？</h2>
+
+      <div class="actions">
+        <button onclick="show('leverGuide')">レバーを閉じても固定できない</button>
+        <button onclick="show('leverGuide')">レバーが固すぎる・ゆるすぎる</button>
+        <button onclick="show('leverGuide')">締め付けの調整方法が分からない</button>
+      </div>
+
+      <button class="back" onclick="show('fixingType')">← 固定方法へ戻る</button>
+    </div>
+  </section>
+
+  <section id="leverGuide" class="screen">
+    <div class="card">
+      <div class="step">レバー固定の確認</div>
+      <h2>操作方法の案内ページ</h2>
+      <p>ここに実際のレバー方式・締め付け方式ごとの手順を入れる想定です。</p>
+      <p class="note">方式が複数あるため、この先は製品仕様を整理してから詳細化します。</p>
+
+      <div class="actions">
+        <button class="primary" onclick="show('beforeRepair')">直らないので修理受付へ</button>
+        <button onclick="show('solved')">直った</button>
+      </div>
+
+      <button class="back" onclick="show('lever')">← 戻る</button>
+    </div>
+  </section>
+
+  <section id="fixingUnknown" class="screen">
+    <div class="card">
+      <h2>固定方法が分からなくても大丈夫です</h2>
+      <p>無理に判断せず、修理受付へ進んでください。SINANOで現物を確認します。</p>
+
+      <div class="actions">
+        <button class="primary" onclick="show('beforeRepair')">修理受付へ進む</button>
+        <button class="line-button" onclick="show('lineHelp')">LINEで質問する</button>
+      </div>
+      <p class="helper-text">製品や固定方法の写真を送って確認したい場合はこちら。</p>
+
+      <button class="back" onclick="show('fixingType')">← 戻る</button>
+    </div>
+  </section>
+
+  <!-- PARTS -->
+  <section id="parts" class="screen">
+    <div class="card">
+      <div class="step">部品交換</div>
+      <h2>修理に出さずに交換できる部品があります</h2>
+      <p>先ゴムなど、一部の部品は部品購入だけで対応できる場合があります。</p>
+
+      <div class="actions">
+        <button onclick="alert('将来ここから部品購入ページへリンクする想定です。')">部品を確認する</button>
+        <button class="primary" onclick="show('beforeRepair')">どの部品か分からないので修理受付へ</button>
+      </div>
+
+      <button class="back" onclick="show('problem')">← 症状選択へ戻る</button>
+    </div>
+  </section>
+
+  <!-- UNKNOWN -->
+  <section id="unknown" class="screen">
+    <div class="card">
+      <div class="step">症状が分からない場合</div>
+      <h2>よく分からなくても大丈夫です</h2>
+      <p>SINANO製品であれば、分かる範囲でご入力ください。製品到着後に状態を確認します。</p>
+
+      <div class="actions">
+        <button class="primary" onclick="show('beforeRepair')">修理受付へ進む</button>
+        <button class="line-button" onclick="show('lineHelp')">送る前にLINEで質問する</button>
+      </div>
+      <p class="helper-text">「SINANO製品か分からない」「修理できるか分からない」など、判断に迷う場合にご利用ください。</p>
+
+      <button class="back" onclick="show('problem')">← 症状選択へ戻る</button>
+    </div>
+  </section>
+
+  <!-- BEFORE REPAIR -->
+  <section id="beforeRepair" class="screen">
+    <div class="card">
+      <div class="step">2 / 2</div>
+      <h2>修理受付について</h2>
+
+      <ul class="checklist">
+        <li>SINANO製品のみ受付しています</li>
+        <li>製品名・型番が分からなくても大丈夫です</li>
+        <li>事前に電話する必要はありません</li>
+        <li>発送時の送料はお客様負担（元払い）です</li>
+        <li>到着後、状態を確認してお見積りをご案内します</li>
+      </ul>
+
+      <div class="info-box">
+        <strong>判断に迷う場合</strong><br>
+        「SINANO製品か分からない」「修理対象か分からない」「この状態で送ってよいか分からない」場合は、発送前にLINEで質問できます。
+      </div>
+
+      <div class="actions">
+        <button class="primary" onclick="show('formMock')">修理受付を始める</button>
+        <button class="line-button" onclick="show('lineHelp')">LINEで質問する</button>
+      </div>
+
+      <button class="back" onclick="show('problem')">← 症状選択へ戻る</button>
+    </div>
+  </section>
+
+  <!-- LINE HELP -->
+  <section id="lineHelp" class="screen">
+    <div class="card">
+      <div class="step">送る前に相談したい方</div>
+      <h2>LINEで質問できます</h2>
+      <p>「このまま送ってよいか分からない」という場合は、修理品を発送する前にLINEでご相談ください。</p>
+
+      <div class="info-box">
+        <strong>LINEで確認しやすい例</strong><br>
+        ・SINANO製品か分からない<br>
+        ・修理できる状態か分からない<br>
+        ・固定方法が分からない<br>
+        ・部品交換だけで済むか分からない<br>
+        ・この状態で送ってよいか確認したい
+      </div>
+
+      <p>製品全体やロゴ、不具合箇所の写真を送っていただくと確認しやすくなります。</p>
+
+      <div class="actions">
+        <button onclick="alert('ここに実際のLINE相談ページまたはLINE公式アカウントへのリンクを設定する想定です。')">LINEを開く（仮）</button>
+        <button class="primary" onclick="show('beforeRepair')">LINEを使わず修理受付へ進む</button>
+      </div>
+
+      <button class="back" onclick="goBackScreen()">← 戻る</button>
+    </div>
+  </section>
+
+  <!-- FORM MOCK -->
+  <section id="formMock" class="screen">
+    <div class="card">
+      <div class="step">修理受付システム</div>
+      <h2>ここから現在開発中の修理受付へ</h2>
+      <p>この部分は、現在作成中の修理受付フォーム／システムへ接続する想定です。</p>
+
+      <div class="info-box">
+        例：お客様情報 → 修理希望内容 → 見積条件 → 支払方法 → 使用予定日 → 内容確認
+      </div>
+
+      <div class="actions">
+        <button onclick="show('completeMock')">［デモ］受付完了まで進む</button>
+      </div>
+
+      <button class="back" onclick="show('beforeRepair')">← 戻る</button>
+    </div>
+  </section>
+
+  <!-- COMPLETE MOCK -->
+  <section id="completeMock" class="screen">
+    <div class="card">
+      <div class="step">受付完了</div>
+      <h2>修理受付が完了しました</h2>
+      <p>次に、修理品をSINANOへお送りください。</p>
+
+      <div class="info-box">
+        <strong>送付先</strong><br>
+        ※ 実際の住所をここに表示<br><br>
+        ・送料は元払い<br>
+        ・受付番号を荷物に記載／同梱<br>
+        ・修理する製品を梱包して発送
+      </div>
+
+      <p>修理品到着後、状態を確認してお見積りをご案内します。</p>
+
+      <div class="actions">
+        <button onclick="show('home')">最初に戻る</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLVED -->
+  <section id="solved" class="screen">
+    <div class="card">
+      <h2>解決しました</h2>
+      <p>修理受付は不要です。</p>
+
+      <div class="actions">
+        <button onclick="show('home')">最初に戻る</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+let currentScreen = 'home';
+let previousScreen = 'home';
+
+function show(id) {
+  if (id !== currentScreen) {
+    previousScreen = currentScreen;
+    currentScreen = id;
+  }
+  document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+}
+
+function goBackScreen() {
+  const target = previousScreen || 'problem';
+  currentScreen = target;
+  document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+  const el = document.getElementById(target);
+  if (el) el.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+
+</body>
+</html>
